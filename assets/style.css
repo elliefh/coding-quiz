@@ -1,0 +1,22 @@
+* {
+    background-color:#e2cfea;
+    color: #062726;
+}
+
+button {
+    background-color: #6247aa;
+    color: white;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#highscores {
+    justify-content: flex-start;
+}
+
+#timer {
+    justify-content: flex-end;
+}
