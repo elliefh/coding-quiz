@@ -1,6 +1,8 @@
 var bigText = document.getElementById("bigText");
 var smallText = document.getElementById("smallText");
+var header = document.getElementById("header");
 var viewScores = document.getElementById("highscores");
+var countdown = document.getElementById("countdown");
 var list = document.getElementById("list");
 var startBtn = document.createElement("button");
 var button1 = document.createElement("button");
@@ -12,14 +14,16 @@ var returnBtn = document.createElement("button");
 var clearBtn = document.createElement("button");
 
 var score = 0;
-var timer = document.getElementById("timer");
+var timeLeft = 10;
 
 function startPage() {
     bigText.textContent = "Coding Quiz Challenge";
     smallText.textContent = "Answer as many of the following code-related questions within the 100 second time limit. Keep in mind that incorrect answers will result in a time reduction of 10 seconds. Good luck!";
     viewScores.textContent = "View Highscores";
+    countdown.innerHTML = "Countdown: Ready";
     startBtn.innerHTML = "Start Quiz";
     list.appendChild(startBtn);
+
     bigText.style.textAlign = "center";
     smallText.style.textAlign = "center";
     startBtn.style.textAlign = "center";
@@ -30,6 +34,18 @@ function startPage() {
 }
 
 function questionOne() {
+    var timer = setInterval(function() {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            countdown.innerHTML = "Countdown: Time's out!";
+            endPage();
+        }
+        else {
+            countdown.innerHTML = "Countdown: " + timeLeft + " seconds"
+        }
+        timeLeft--;
+    }, 1000);
+    
     list.removeChild(startBtn);  
     bigText.textContent = "Q1: Commonly used data types DO NOT include:"
     smallText.textContent = "";
