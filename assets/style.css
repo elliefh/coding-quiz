@@ -1,6 +1,7 @@
 * {
-    background-color:#e2cfea;
+    background-color: aliceblue;
     color: #062726;
+    font-family: 'Quicksand', sans-serif;
 }
 
 button {
@@ -8,15 +9,29 @@ button {
     color: white;
 }
 
-.row {
+main {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+#list {
     display: flex;
-    flex-direction: row;
 }
 
-#highscores {
-    justify-content: flex-start;
-}
-
-#timer {
-    justify-content: flex-end;
+button {
+    width: 20%;
+    margin: 3px;
+    text-align: left;
 }
