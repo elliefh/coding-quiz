@@ -237,13 +237,24 @@ function endPage() {
     }); 
 }
 
+// programming to get data from local storage
+function renderScores() {
+    var storedInitials = localStorage.getItem("initials");
+    var storedScores = localStorage.getItem("scores");
+  
+    if (!storedInitials || !storedScores) {
+      return;
+    }
+    smallText.textContent = "Initials: " + storedInitials + ", Score: " + storedScores;
+}
+
 // programming for the score page, which shows scores and clears unnecessary buttons
 function scores() {
+    renderScores();
     list.removeChild(submitBtn);
     document.getElementById("submitForm").remove();
     alert.removeChild(feedback);
     bigText.textContent = "Highscores";
-    smallText.textContent = "";
     returnBtn.innerHTML = "Return";
     clearBtn.innerHTML = "Clear Highscores";
     returnBtn.style.textAlign = "center";
