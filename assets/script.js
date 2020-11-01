@@ -27,6 +27,7 @@ var clearBtn = document.createElement("button");
 var score = 0;
 var timeLeft = 0;
 var timer = null;
+var storedScores = [];
 
 // programming the first visible page, with information and rules of the Coding Quiz
 function startPage() {
@@ -46,7 +47,7 @@ function startPage() {
     list.style.justifyContent = "center";
 
     // updating the eventlistners to ensure the right page appears when clicked 
-    viewScores.addEventListener("click", clear);
+    viewScores.addEventListener("click", scores);
     startBtn.addEventListener("click", startTimer);
 }
 
@@ -76,7 +77,6 @@ function correct() {
     feedback.textContent = "Correct! You scored +10 points!";
     feedback.style.color = "green";
     alert.appendChild(feedback);
-
 }
 
 // programming for the alerts shown when the User answers the question incorrectly, which results in a 10 sec time deduction
@@ -203,7 +203,7 @@ function endPage() {
     list.removeChild(button3); 
     list.removeChild(button4); 
     bigText.textContent = "All done!";
-    smallText.textContent = "Your final score is: " + score;    
+    smallText.textContent = "Your final score is: " + score + ". Put your initials below!";    
     bigText.style.textAlign = "center";
     smallText.style.textAlign = "center";
     submitBtn.innerHTML = "Submit";
@@ -218,22 +218,29 @@ function endPage() {
     document.getElementById("submission").appendChild(form);
     var formInput = document.createElement("INPUT");
     formInput.setAttribute("type", "text");
-    formInput.setAttribute("value", "Your Initials");
+    formInput.setAttribute("placeholder", "Your Initials");
+    formInput.setAttribute("id", "initials");
     document.getElementById("submitForm").appendChild(formInput);
     document.getElementById("submission").style.justifyContent = "center";
     document.getElementById("submission").style.margin = "5px";
-    submitBtn.addEventListener("click", clear); 
+    submitBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        var submittedInitials = document.querySelector("#initials").value;
+        if (submittedInitials==="") {
+            feedback.textContent = "Form cannot be left blank! Please submit initials.";        
+        }
+        else {
+            localStorage.setItem("initials", submittedInitials);
+            localStorage.setItem("scores", score);
+            scores();
+        }
+    }); 
 }
 
-// programming to clear the existing button and executes the score function to show the score page 
-function clear() {
-    list.removeChild(list.childNodes[0]);
-    document.getElementById("submitForm").remove();
-    scores();
-}
-
-// programming for the score page, which shows scores
+// programming for the score page, which shows scores and clears unnecessary buttons
 function scores() {
+    list.removeChild(submitBtn);
+    document.getElementById("submitForm").remove();
     alert.removeChild(feedback);
     bigText.textContent = "Highscores";
     smallText.textContent = "";
