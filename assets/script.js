@@ -46,7 +46,7 @@ function startPage() {
     list.style.justifyContent = "center";
 
     // updating the eventlistners to ensure the right page appears when clicked 
-    viewScores.addEventListener("click", clearBtn);
+    viewScores.addEventListener("click", clear);
     startBtn.addEventListener("click", startTimer);
 }
 
@@ -222,11 +222,11 @@ function endPage() {
     document.getElementById("submitForm").appendChild(formInput);
     document.getElementById("submission").style.justifyContent = "center";
     document.getElementById("submission").style.margin = "5px";
-    submitBtn.addEventListener("click", clearBtn); 
+    submitBtn.addEventListener("click", clear); 
 }
 
 // programming to clear the existing button and executes the score function to show the score page 
-function clearBtn() {
+function clear() {
     list.removeChild(list.childNodes[0]);
     document.getElementById("submitForm").remove();
     scores();
@@ -249,7 +249,7 @@ function scores() {
     // clearBtn.addEventListener("click");        
 }
 
-// programming to reset everything, including the event listeners associated with the buttons and clearning buttons no longer needed 
+// programming to reset everything, including the event listeners associated with the buttons, clearning buttons no longer needed, and clearing the score 
 // executes the startPage function to take the User back to the first visible page
 function returnHome() {
     list.removeChild(returnBtn);
@@ -274,6 +274,7 @@ function returnHome() {
     button4.removeEventListener("click", questionFour);
     button4.removeEventListener("click", questionFive);
     button4.removeEventListener("click", endPage);
+    score = 0;
 
     startPage();
 }
