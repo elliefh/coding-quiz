@@ -27,7 +27,7 @@ h3 {
     margin: 0;
 }
 
-#list {
+#submission, #list {
     display: flex;
 }
 
